@@ -1,0 +1,99 @@
+Goal: Create program in hack to implement the following circuit:
+
+Input 1 T token or 2 R tokens and press start, output W.
+Input 1 T token and 1 R token and press start, output WD.
+Input 2 T token or 4 R tokens and press start, output WXD.
+
+Output will be a location in memory that we write a value to.
+Input will be keypresses.
+
+We do not care about overpaying. No screen display is needed.
+
+General aproach:
+
+We have made a finite state machine of the circuit. This will be the primary inspiration for the
+structure of the program, rather than the circuit implemented with D-Flip-Flops. The FSM gives us
+several states that can be represented as loops waiting for a change in state. Whenever we have 2 R
+tokens we transform it to a T token for simplicity.
+
+State 1:
+  0 T tokens
+  0 R tokens
+  If T token is inserted, go to State 2
+  If R token is inserted, go to State 3
+  If START is pressed, do nothing
+  If nothing is pressed, do nothing
+
+State 2:
+  1 T token
+  0 R tokens
+  If T token is inserted, go to State 4
+  If R token is inserted, go to State 5
+  If START is pressed, go to Output W
+  If nothing is pressed, do nothing
+
+State 3:
+  0 T tokens
+  1 R token
+  If T token is inserted, go to State 5
+  If R token is inserted, go to State 4
+  If START is pressed, do nothing
+  If nothing is pressed, do nothing
+
+State 4:
+  2 T tokens
+  0 R tokens
+  If T token is inserted, do nothing
+  If R token is inserted, do nothing
+  If START is pressed, go to Output WXD
+  If nothing is pressed, do nothing
+
+State 5:
+  1 T token
+  1 R token
+  If T token is inserted, do nothing
+  If R token is inserted, go to State 4
+  If START is pressed, go to Output WD
+  If nothing is pressed, do nothing
+
+Inputs will be mapped to keypresses.
+
+T token = T keypress 084
+R token = R keypress 082
+START   = S keypress 083
+
+Ouputs will be values written to a location in memory.
+
+Alternative aproach:
+
+Have locations in memory store the number of tokens inserted. Have a MAIN method that listens for
+keypresses and jumps to other methods depending on the press. If it is a START press, jump to the 
+START method. If it is a T press, jump to the T method. If it is a R press, jump to the R method.
+
+START method:
+  Check T mem location.
+    If T = 0 return to MAIN
+    If T = 1 check R mem location
+      If R = 1 output WD & clear T/R mem locations
+      If R = 0 output W & clear T/R mem locations
+    If T = 2 output WXD & clear T/R mem locations
+
+T method:
+  Check T mem location
+    If T = 0 set T = 1
+    If T = 1 set T = 1
+    if T = 2 set T = 2
+  Jump to MAIN method
+
+R method:
+  Check R mem location
+    If R = 0 set R = 1
+    If R = 1 Set R = 0 & jump to T method
+
+MAIN method:
+LOOP
+  Check 24576 (keyboard mem loc)
+    If 24576 = 84 jump to T method
+    If 24576 = 83 jump to START method
+    if 24575 = 82 jump to R method
+ENDLOOP
