@@ -86,6 +86,18 @@ M=0
   0;JEQ       // Jump to MAIN
 
 (WXD)         // Writes 3 to output and clears T/R counters
+  @3
+  D=A
+  @output
+  M=D         // Set output to 3
+  @0
+  D=A
+  @tcounter
+  M=D         // Set tcounter to 0
+  @rcounter
+  M=D         // Set rcounter to 0
+  @MAIN
+  0;JEQ       // Jump to MAIN
 
 (T)           // T method. Updates tcounter with new value
   @tcounter
