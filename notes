@@ -78,9 +78,9 @@ START method:
   Check T mem location.
     If T = 0 return to MAIN
     If T = 1 check R mem location
-      If R = 1 output WD & clear T/R mem locations
-      If R = 0 output W & clear T/R mem locations
-    If T = 2 output WXD & clear T/R mem locations
+      If R = 1 jumpt to WD 
+      If R = 0 jump to W 
+    If T = 2 jump to WXD 
 
 T method:
   Check T mem location

@@ -30,6 +30,32 @@ M=0
   0;JMP       // Jump to start of MAIN method
 
 (START)       // START method. Checks T/R counters and writes to output
+  @tcounter
+  D=M         // Load in value for T
+  @MAIN
+  D;JEQ       // If T = 0 jump to MAIN
+  @1
+  D=D-A
+  @CHECKWD
+  D;JEQ       // If T = 1 jump to CHECKWD
+  @tcounter
+  D=M         // Load in value for T
+  @2
+  D=D-A
+  @WXD
+  D;JEQ       // If T is 2, jump to WXD
+  @MAIN
+  0;JEQ       // If there was a value not expected, jump to main
+
+(CHECKWD)     // CHECKWD method. Called if T = 1. Checks if R =1, if so jumps to WD, else jumps to W
+  @rcounter
+  D=M         // Load in value for R
+  @1
+  D=D-A
+  @WD
+  D;JEQ       // If R is 1 jump to WD
+  @W
+  0;JEQ       // If R is not 1 jump to W
 
 (T)           // T method. Updates tcounter with new value
 
