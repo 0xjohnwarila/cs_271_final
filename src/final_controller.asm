@@ -6,6 +6,10 @@ M=0
 M=0
 
 (MAIN)        // MAIN method. Listens for Keypress and jumps to T or R method
+  @0
+  D=A
+  @output
+  M=D         // Reset output to 0
   @KBD        // Read from keyboard
   D=M         
   @keypress   
