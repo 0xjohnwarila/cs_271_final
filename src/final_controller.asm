@@ -58,6 +58,18 @@ M=0
   0;JEQ       // If R is not 1 jump to W
 
 (W)           // Writes 1 to output and clears T/R counters
+  @1
+  D=A
+  @output
+  M=D         // Set output to 1
+  @0
+  D=A
+  @tcounter
+  M=D         // Set tcounter to 0
+  @rcounter
+  M=D         // Set rcounter to 0
+  @MAIN
+  0;JEQ       // Jump to MAIN
 
 (WD)          // Writes 2 to output and clears T/R counters
 
