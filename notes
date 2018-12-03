@@ -78,14 +78,25 @@ START method:
   Check T mem location.
     If T = 0 return to MAIN
     If T = 1 check R mem location
-      If R = 1 jumpt to WD 
-      If R = 0 jump to W 
-    If T = 2 jump to WXD 
+      If R = 1 jumpt to WD
+      If R = 0 jump to W
+    If T = 2 jump to WXD
+
+W method:
+  Write 1 to output mem, and clear T/R mem locations
+  Jump to MAIN
+
+WD method:
+  Write 2 to output mem, and clear T/R mem locations
+  Jump to MAIN
+
+WXD method:
+  Write 3 to output mem, and clear T/R mem locations
 
 T method:
   Check T mem location
     If T = 0 set T = 1
-    If T = 1 set T = 1
+    If T = 1 set T = 2
     if T = 2 set T = 2
   Jump to MAIN method
 

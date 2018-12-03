@@ -57,6 +57,28 @@ M=0
   @W
   0;JEQ       // If R is not 1 jump to W
 
+(W)           // Writes 1 to output and clears T/R counters
+
+(WD)          // Writes 2 to output and clears T/R counters
+
+(WXD)         // Writes 3 to output and clears T/R counters
+
 (T)           // T method. Updates tcounter with new value
+  @tcounter
+  D=M         // Load in T counter value
+  @2
+  D=D-2
+  @MAIN
+  D;JEQ       // If T = 2 keep it at 2 and jump to MAIN
+  @TADD
+  0;JEQ       // If T != 2 jump to TADD
+
+(TADD)        // Add 1 to T counter
+  @tcounter
+  D=M
+  D=D+1
+  M=D
+  @MAIN
+  0;JEQ       // Jump to MAIN
 
 (R)           // R method. Updates rcounter with new value
