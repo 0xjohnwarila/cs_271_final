@@ -64,6 +64,10 @@ START   = S keypress 083
 
 Ouputs will be values written to a location in memory.
 
+W   = 1
+WD  = 2
+WXD = 3
+
 Alternative aproach:
 
 Have locations in memory store the number of tokens inserted. Have a MAIN method that listens for
