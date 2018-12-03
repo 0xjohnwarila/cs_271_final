@@ -103,7 +103,7 @@ M=0
   @tcounter
   D=M         // Load in T counter value
   @2
-  D=D-2
+  D=D-A
   @MAIN
   D;JEQ       // If T = 2 keep it at 2 and jump to MAIN
   @TADD
