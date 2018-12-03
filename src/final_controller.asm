@@ -76,9 +76,33 @@ M=0
 (TADD)        // Add 1 to T counter
   @tcounter
   D=M
-  D=D+1
+  @1
+  D=D+A
+  @tcounter
   M=D
   @MAIN
   0;JEQ       // Jump to MAIN
 
 (R)           // R method. Updates rcounter with new value
+  @rcounter
+  D=M         // Load R counter value
+  @1
+  D=D-A
+  @TWOR
+  D;JEQ       // If R = 1, jump to TWOR method
+  @ONER
+  0;JEQ       // If R != 1, jump to ONER method
+
+(TWOR)        // TWOR method. Called if there is 2 R. Sets R to 0 and jumps to T method
+  @rcounter
+  M=0         // Set R counter to 0
+  @T
+  0;JEQ       // Jump to T method
+
+(ONER)        // Add 1 to R counter
+  @1
+  D=A
+  @rcounter
+  M=D
+  @MAIN
+  0;JEQ       // Jump to MAIN
