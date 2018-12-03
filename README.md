@@ -13,3 +13,6 @@ Tips for running final_controller.asm:
 7. You need 2 T or 4 R to output WXD.
 8. After you have pressed start your tokens are cleared, unless you don't have enough to get an output. So don't overpay!
 9. The program will never exit by itself, you can get as many ouputs as you want.
+10. You can see how many tokens you have in RAM locations 16 and 17. 16 is for T tokens, and 17 is for R tokens. Note: If you have 2 R tokens they will be turned into a T token.
+11. TURN CAPSLOCK ON
+12. For more details look at the notes file.
