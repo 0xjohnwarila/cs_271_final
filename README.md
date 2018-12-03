@@ -2,8 +2,6 @@
 
 Final project for Computer Architecture and Assembly
 
-When running final_controller.asm press T to insert a T token, press R to insert an R token, and press S to start.
-
 Tips for running final_controller.asm:
 
 1. Press T to insert a T token. If you are using the CPU Emulator inlcuded with Nand2Tetris, try to time your keypresses to just before the 6th line (@24576). You can continue to hold down the key, but this may cause accidental inputs.
